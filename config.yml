@@ -7,6 +7,3 @@ driver_config:
   debugger:
     using_debugger: false
     debugger_address: 127.0.0.1:5000
-account:
-  username: "autotest"
-  password: "*7/5M*^Nj+T9`.F5Gp2:~__-a3kug5de"

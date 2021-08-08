@@ -1,3 +1,4 @@
+import os
 import yaml
 from utils.data_path_manager import data_path_manager
 
@@ -14,3 +15,9 @@ class Configurator:
 
 
 config = Configurator().config
+username = os.getenv('tms_username')
+password = os.getenv('tms_password')
+config["account"] = {
+    "username": username,
+    "password": password
+}

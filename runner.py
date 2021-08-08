@@ -1,4 +1,5 @@
 import pytest
+import sys
 
 
 class Runner:
@@ -11,5 +12,10 @@ class Runner:
 
 
 if __name__ == '__main__':
-    # Runner.run_test(Runner.web_test_case_dir)
-    Runner.run_test(Runner.api_test_case_dir)
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "api":
+            Runner.run_test(Runner.api_test_case_dir)
+        elif sys.argv[1] == "web":
+            Runner.run_test(Runner.web_test_case_dir)
+    else:
+        print("Usage: runner.py [api|web]")
