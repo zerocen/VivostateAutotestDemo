@@ -1,0 +1,45 @@
+create_organization:
+  data:
+    - [1, "Test Organization", true, true, "Organization description", 201, ~]
+    - [-1, "Test Organization", false, false, "Test Organization", 404, 500]
+    - [1, "测试组织", false, true, "组织简介", 400, 405]
+  ids:
+    - "Valid data"
+    - "Invalid parentId"
+    - "Invalid name and description"
+
+get_organization_by_id:
+  data:
+    - [~, 1, "Test Organization", true, true, "Organization description", 200, ~]
+    - ["xxx", ~, ~, ~, ~, ~, 404, 500]
+  ids:
+    - "Valid data"
+    - "Invalid organizationId"
+
+update_organization:
+  data:
+    - [~, 1, "Old Organization Name", true, true, "Old organization description", "New Organization Name", false, false, "New organization description", 200, ~]
+    - [~, 1, "Old Organization Name", true, true, "Old organization description", "新组织名称", false, false, "新组织简介", 400, 405]
+    - ["xxx", ~, ~, ~, ~, ~, "New Organization Name", false, false, "New organization description", 404, 500]
+  ids:
+    - "Valid data"
+    - "Invalid name and description"
+    - "Invalid organizationId"
+
+search_organization:
+  data:
+    - [1, "Test Organization", true, true, "Organization description", "Test Organization", 1, 50, 200]
+    - [1, "Test Organization", true, true, "Organization description", "Organization description", 1, 50, 200]
+    - [1, "Test Organization", true, true, "Organization description", "", 1, 50, 200]
+  ids:
+    - "Search organization name"
+    - "Search organization description"
+    - "Empty key word"
+
+delete_organization:
+  data:
+    - [~, 1, "Test Organization", true, true, "Organization description", 204, ~]
+    - ["xxx", ~, ~, ~, ~, ~, 404, 500]
+  ids:
+    - "Valid data"
+    - "Invalid organizationId"

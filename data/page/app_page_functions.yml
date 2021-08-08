@@ -1,0 +1,77 @@
+go_to_package_store_page:
+  - step_id: "go to package store"
+    command: click_element
+    element: xpath=//*[@id='applicationstore']
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: xpath=//*[@id='content']//*[text()='Package Store']
+    timeout: 20
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: css_selector=.v-textfield-focus[placeholder='Search']
+    timeout: 20
+
+go_to_personalization_page:
+  - step_id: "go to personalization"
+    command: click_element
+    element: xpath=//*[@id='personalization']
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: xpath=//*[@id='content']//*[text()='Personalization']
+    timeout: 20
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: css_selector=.v-textfield-focus[placeholder='Search']
+    timeout: 20
+
+go_to_groups_page:
+  - step_id: "go to groups"
+    command: click_element
+    element: xpath=//*[@id='groups']
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: xpath=//*[@id='content']//*[text()='Groups']
+    timeout: 20
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: css_selector=.v-textfield-focus[placeholder='Search']
+    timeout: 20
+
+go_to_monitor_page:
+  - step_id: "go to monitor"
+    command: click_element
+    element: xpath=//*[@id='heartbeat']
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: xpath=//*[@id='content']//*[text()='Monitor']
+    timeout: 20
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: css_selector=.v-textfield-focus[placeholder='Search']
+    timeout: 20
+
+go_to_asset_page:
+  - step_id: "go to asset"
+    command: click_element
+    element: xpath=//*[@id='assetcontrol']
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: xpath=//*[@id='content']//*[text()='Asset']
+    timeout: 20
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: css_selector=.v-textfield-focus[placeholder='Search']
+    timeout: 20
+
+go_to_odometer_page:
+  - step_id: "go to odometer"
+    command: click_element
+    element: xpath=//*[@id='deviceodometer']
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: xpath=//*[@id='content']//*[text()='Odometer']
+    timeout: 20
+  - step_id: "wait for the page to load"
+    command: wait_for_element_visible
+    element: css_selector=.v-textfield-focus[placeholder='Search']
+    timeout: 20

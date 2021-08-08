@@ -1,0 +1,12 @@
+login:
+  - step_id: "input user name"
+    command: input_text
+    element: id=myUserName
+    text: "{username}"
+  - step_id: "input password"
+    command: input_text
+    element: id=myUserPassword
+    text: "{password}"
+  - step_id: "click sign in"
+    command: click_element
+    element: xpath=//button[@type='button']

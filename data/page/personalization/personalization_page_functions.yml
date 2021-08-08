@@ -1,0 +1,978 @@
+open_entity_by_search:
+  - step_id: "input key word"
+    command: input_text
+    element: css_selector=[placeholder='Search']
+    text: "{entity_name}"
+  - step_id: "wait"
+    command: pause
+    time: 3
+  - step_id: "open entity"
+    command: click_element
+    element: xpath=//*[contains(text(), '{entity_name}')]
+
+open_entity_by_search_desc:
+  - step_id: "input entity desc"
+    command: input_text
+    element: css_selector=[placeholder='Search']
+    text: "{entity_desc}"
+  - step_id: "wait"
+    command: pause
+    time: 1
+  - step_id: "open entity"
+    command: click_element
+    element: xpath=//*[contains(text(), '{entity_name}')]
+
+open_entity_by_search_sn:
+  - step_id: "input entity sn"
+    command: input_text
+    element: css_selector=[placeholder='Search']
+    text: "{entity_sn}"
+  - step_id: "wait"
+    command: pause
+    time: 1
+  - step_id: "open entity"
+    command: click_element
+    element: xpath=//*[contains(text(), '{entity_name}')]
+
+open_entity_by_search_max_len:
+  - step_id: "input entity name"
+    command: input_text
+    element: css_selector=[placeholder='Search']
+    text: "{entity_name}"
+  - step_id: "click x button of:the text limit has been reached"
+    command: click_element
+    element: xpath=//*[@class='v-Notification-caption']
+  - step_id: "wait"
+    command: pause
+    time: 1
+  - step_id: "open entity"
+    command: click_element
+    element: xpath=//*[contains(text(), '{entity_name}')]
+
+get_entity_keyword_display:
+  - step_id: "get entity keyword display"
+    command: get_text
+    elements: xpath=//*[@class='v-treegrid-tablewrapper']//td[text()='{entity_name}']/../td
+    store_key: "{entity_keyword_display}"
+
+click_x_button:
+  - step_id: "click x button"
+    command: click_element
+    element: xpath=//*[contains(@class, 'v-csslayout v-layout v-widget v-component-group v-csslayout-v-component-group v-has-width')]//*[contains(@class, 'v-button v-widget')]
+  - step_id: "sleep"
+    command: pause
+    time: 1
+
+click_the_pop_of_select_any_entity_to_select_package:
+  - step_id: "click x button"
+    command: click_element
+    element: xpath=//*[@class='v-Notification-caption']
+
+go_to_details_tab:
+  - step_id: "click details tab"
+    command: click_element
+    element: xpath=//*[contains(@class, 'v-tabsheet-tabitem')]//*[text()='Details']
+
+go_to_packages_tab:
+  - step_id: "click packages tab"
+    command: click_element
+    element: xpath=//*[contains(@class, 'v-tabsheet-tabitem')]//*[text()='Packages']
+
+go_to_parameters_tab:
+  - step_id: "click packages tab"
+    command: click_element
+    element: xpath=//*[contains(@class, 'v-tabsheet-tabitem')]//*[text()='Parameters']
+
+add_entity:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click add entity"
+    command: click_element
+    element: xpath=//*[text()='Add Entity']
+  - step_id: "open entity type drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Entity']/../..//*[@class='v-filterselect-button']
+  - step_id: "select entity type"
+    command: click_element
+    element: xpath=//*[text()='{entity_type}']
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Name']/../..//input
+    text: "{entity_name}"
+  - step_id: "input description"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Description']/../..//input
+    text: "{description}"
+  - step_id: "open model drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Model']/../..//*[@class='v-filterselect-button']
+    enabled: "{model}"
+  - step_id: "select model"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{model}']
+    enabled: "{model}"
+  - step_id: "input serial number"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Serial Number']/../..//input
+    text: "{serial_number}"
+    enabled: "{serial_number}"
+  - step_id: "open schedule drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Schedule']/../..//*[@class='v-filterselect-button']
+    enabled: "{schedule}"
+  - step_id: "select schedule"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{schedule}']
+    enabled: "{schedule}"
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+edit_entity:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Edit Entity']/../..
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Name']/../..//input[not(@disabled)]
+    text: "{entity_name}"
+  - step_id: "input entity description"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Description']/../..//input
+    text: "{description}"
+  - step_id: "open available drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Available']/../..//*[@class='v-filterselect-button']
+    enabled: "{available}"
+  - step_id: "select available value"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{available}']
+    enabled: "{available}"
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity info to be saved"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+    timeout: 10
+
+edit_terminal_cancel:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Edit Entity']/../..
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Name']/../..//input[not(@disabled)]
+    text: "{entity_name}"
+  - step_id: "input entity description"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Description']/../..//input
+    text: "{description}"
+  - step_id: "input entity number"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Entity Number']/../..//input
+    text: "{entity_number}"
+  - step_id: "input entity key"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Entity Key']/../..//input
+    text: "{entity_key}"
+  - step_id: "open available drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Available']/../..//*[@class='v-filterselect-button']
+  - step_id: "select available"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{available}')]
+  - step_id: "clean model"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Model']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input model"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Model']/../..//input
+    text: "{model}"
+  - step_id: "select model"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{model}']
+  - step_id: "clear serial number"
+    command: click_element
+    element: xpath=//*[text()='Clear SN']
+  - step_id: "wait for serial number to clear"
+    command: wait_for_text_to_be_element_attribute
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Serial Number']/../..//input
+    element_attribute: value
+    text: ""
+  - step_id: "input serial number"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Serial Number']/../..//input
+    text: "{serial_number}"
+  - step_id: "select force update"
+    command: execute_script
+    element: xpath=//*[@class='v-slot v-slot-v-textfield-font v-slot-personlization-heartbeatCheckbox']//*[text()='Force Update']/..//input
+    script: "arguments[0].checked={force_update}"
+  - step_id: "select force reboot"
+    command: execute_script
+    element: xpath=//*[@class='v-slot v-slot-v-textfield-font v-slot-personlization-heartbeatCheckbox']//*[text()='Force Reboot']/..//input
+    script: "arguments[0].checked={force_reboot}"
+  - step_id: "open frequency drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Frequency']/../..//*[@class='v-filterselect-button']
+  - step_id: "select frequency value"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{frequency}']
+  - step_id: "clean schedule"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Schedule']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input schedule"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Schedule']/../..//input
+    text: "{schedule}"
+  - step_id: "select schedule"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{schedule}']
+  - step_id: "click cancel button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Cancel']
+  - step_id: "wait for the entity info to be saved"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-button-caption' and text()='Cancel']
+    timeout: 10
+
+edit_terminal_save:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Edit Entity']/../..
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Name']/../..//input[not(@disabled)]
+    text: "{entity_name}"
+  - step_id: "input entity description"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Description']/../..//input
+    text: "{description}"
+  - step_id: "input entity number"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Entity Number']/../..//input
+    text: "{entity_number}"
+  - step_id: "input entity key"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Entity Key']/../..//input
+    text: "{entity_key}"
+  - step_id: "open available drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Available']/../..//*[@class='v-filterselect-button']
+  - step_id: "select available"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{available}')]
+  - step_id: "clean model"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Model']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input model"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Model']/../..//input
+    text: "{model}"
+  - step_id: "select model"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{model}']
+  - step_id: "clear serial number"
+    command: click_element
+    element: xpath=//*[text()='Clear SN']
+  - step_id: "wait for serial number to clear"
+    command: wait_for_text_to_be_element_attribute
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Serial Number']/../..//input
+    element_attribute: value
+    text: ""
+  - step_id: "input serial number"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Serial Number']/../..//input
+    text: "{serial_number}"
+  - step_id: "select force update"
+    command: execute_script
+    element: xpath=//*[@class='v-slot v-slot-v-textfield-font v-slot-personlization-heartbeatCheckbox']//*[text()='Force Update']/..//input
+    script: "arguments[0].checked={force_update}"
+  - step_id: "select force reboot"
+    command: execute_script
+    element: xpath=//*[@class='v-slot v-slot-v-textfield-font v-slot-personlization-heartbeatCheckbox']//*[text()='Force Reboot']/..//input
+    script: "arguments[0].checked={force_reboot}"
+  - step_id: "open frequency drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Frequency']/../..//*[@class='v-filterselect-button']
+  - step_id: "select frequency value"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{frequency}']
+  - step_id: "clean schedule"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Schedule']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input schedule"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Schedule']/../..//input
+    text: "{schedule}"
+  - step_id: "select schedule"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{schedule}']
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity info to be saved"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+    timeout: 10
+
+edit_entity_name_description_cancel:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Edit Entity']/../..
+  - step_id: "clean entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Name']/../..//input[not(@disabled)]
+    text: "\ue008\ue011\ue017"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Name']/../..//input
+    text: "{entity_name}"
+  - step_id: "clean description"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Description']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Description']/../..//input
+    text: "{description}"
+  - step_id: "click cancel button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Cancel']
+  - step_id: "wait for the entity info to be saved"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-button-caption' and text()='Cancel']
+    timeout: 10
+
+edit_entity_name_description_available_save:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Edit Entity']/../..
+  - step_id: "clean entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Name']/../..//input[not(@disabled)]
+    text: "\ue008\ue011\ue017"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Name']/../..//input
+    text: "{entity_name}"
+  - step_id: "clean description"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Description']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Description']/../..//input
+    text: "{description}"
+  - step_id: "clean available"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Available']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input available"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-applicationStore-TabLayout v-slot-framed v-slot-padded-tabbar']//*[text()='Available']/../..//input
+    text: "{available}"
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity info to be saved"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+    timeout: 10
+
+delete_entity:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Delete Entity']/../..
+  - step_id: "input confirm text"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-align-middle']/input
+    text: "YES"
+  - step_id: "click ok button"
+    command: click_element
+    element: xpath=//*[@tabindex='0' and @role='button']//*[@class='v-button-caption' and text()='Ok']
+  - step_id: "wait for the entity to be deleted"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-button-caption' and text()='Ok']
+    timeout: 10
+
+delete_entity_press_x:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Delete Entity']/../..
+  - step_id: "click x"
+    command: click_element
+    element: xpath=//*[@class='v-window-closebox']
+
+delete_entity_input_yes_click_cancel:
+  - step_id: "open context menu"
+    command: click_element
+    element: css_selector=.ellipses-context-click
+  - step_id: "click edit entity"
+    command: click_element
+    element: xpath=//*[text()='Delete Entity']/../..
+  - step_id: "input YES"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-align-middle']/input
+    text: "YES"
+  - step_id: "click cancel"
+    command: click_element
+    element:  xpath=//*[@class='v-button v-widget friendly v-button-friendly v-button-customstyle v-button-v-button-customstyle v-has-height']
+
+get_selected_entity_name_and_serial:
+  - step_id: "get selected entity name"
+    command: get_text
+    element: xpath=//*[contains(@class, 'v-treegrid-row-selected')]//*[@class='gwt-HTML v-treegrid-cell-content']
+    store_key: "{name_key}"
+  - step_id: "get selected entity serial"
+    command: get_text
+    element: xpath=//*[contains(@class, 'v-treegrid-row-selected')]//td[2]
+    store_key: "{serial_key}"
+
+get_selected_entity_details:
+  - step_id: "get entity type"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Entity Type']/../..//input
+    element_attribute: value
+    store_key: "{type_key}"
+  - step_id: "get name"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Name']/../..//input
+    element_attribute: value
+    store_key: "{name_key}"
+  - step_id: "get entity id"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Entity ID']/../..//input
+    element_attribute: value
+    store_key: "{id_key}"
+  - step_id: "get description"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Description']/../..//input
+    element_attribute: value
+    store_key: "{description_key}"
+  - step_id: "get entity number"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Entity Number']/../..//input
+    element_attribute: value
+    store_key: "{entity_number_key}"
+  - step_id: "get entity key"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Entity Key']/../..//input
+    element_attribute: value
+    store_key: "{entity_key_key}"
+  - step_id: "get available"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Available']/../..//input
+    element_attribute: value
+    store_key: "{available_key}"
+  - step_id: "get model"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Model']/../..//input
+    element_attribute: value
+    store_key: "{model_key}"
+  - step_id: "get serial number"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Serial Number']/../..//input
+    element_attribute: value
+    store_key: "{serial_key}"
+  - step_id: "get force update"
+    command: get_attribute
+    element: xpath=//*[@class='v-slot v-slot-v-textfield-font v-slot-personlization-heartbeatCheckbox']//*[text()='Force Update']/..//input
+    element_attribute: checked
+    store_key: "{force_update_key}"
+  - step_id: "get force reboot"
+    command: get_attribute
+    element: xpath=//*[@class='v-slot v-slot-v-textfield-font v-slot-personlization-heartbeatCheckbox']//*[text()='Force Reboot']/..//input
+    element_attribute: checked
+    store_key: "{force_reboot_key}"
+  - step_id: "get frequency"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Frequency']/../..//input
+    element_attribute: value
+    store_key: "{frequency_key}"
+  - step_id: "get schedule"
+    command: get_attribute
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='Schedule']/../..//input
+    element_attribute: value
+    store_key: "{schedule_key}"
+
+get_notification_caption:
+  - step_id: "get notification caption"
+    command: get_text
+    element: css_selector=.v-Notification-caption
+    store_key: "{notification_key}"
+
+add_package_for_entity:
+  - step_id: "open add package menu"
+    command: context_click
+    element: css_selector=.v-grid-tablewrapper
+  - step_id: "click add Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Add Package Profile']
+  - step_id: "clean input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "{package_name}"
+  - step_id: "select package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{package_name}')]
+  - step_id: "open select profiles drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Profiles']/../..//*[@class='v-filterselect-button']
+  - step_id: "select profiles"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{profile_name}']
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+add_package_for_entity_no_select_save:
+  - step_id: "open add package menu"
+    command: context_click
+    element: css_selector=.v-grid-tablewrapper
+  - step_id: "click add Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Add Package Profile']
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+  - step_id: "click x button of pop:No data changes are done"
+    command: click_element
+    #element: xpath=//*[@class='v-Notification error v-Notification-error']
+    element: xpath=//*[text()='No data changes are done']
+  - step_id: "wait for the pop windows invisible"
+    command: wait_for_element_invisible
+    element: xpath=//*[text()='No data changes are done']
+    timeout: 10
+
+add_package_for_entity_select_package_save:
+  - step_id: "open add package menu"
+    command: context_click
+    element: css_selector=.v-grid-tablewrapper
+  - step_id: "click add Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Add Package Profile']
+  - step_id: "clean input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "{package_name}"
+  - step_id: "select package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{package_name}')]
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+  - step_id: "click x button of pop:No data changes are done"
+    command: click_element
+    element: xpath=//*[@class='v-Notification error v-Notification-error']
+  - step_id: "wait for the pop windows invisible"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-Notification error v-Notification-error']
+    timeout: 10
+
+add_package_for_entity_click_cancel:
+  - step_id: "open add package menu"
+    command: context_click
+    element: css_selector=.v-grid-tablewrapper
+  - step_id: "click add Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Add Package Profile']
+  - step_id: "clean input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "{package_name}"
+  - step_id: "select package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{package_name}')]
+  - step_id: "open select profiles drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Profiles']/../..//*[@class='v-filterselect-button']
+  - step_id: "select package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{profile_name}']
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Cancel']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+edit_package_for_entity_not_change_click_save:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click edit Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Edit Package Profile']
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Save']
+  - step_id: "wait for the entity to be edit successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+  - step_id: "click x button of pop:No data changes are done"
+    command: click_element
+    element: xpath=//*[@class='v-Notification error v-Notification-error']
+  - step_id: "wait for the pop windows invisible"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-Notification error v-Notification-error']
+    timeout: 10
+
+edit_package_for_entity_after_change_click_cancel:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click edit Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Edit Package Profile']
+  - step_id: "clean input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "{package_name}"
+  - step_id: "select package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{package_name}')]
+  - step_id: "open select profiles drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Profiles']/../..//*[@class='v-filterselect-button']
+  - step_id: "select profiles"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{profile_name}']
+  - step_id: "click cancel button"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Cancel']
+  - step_id: "wait for the entity to be edit successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+edit_package_for_entity_after_change_click_save:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click edit Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Edit Package Profile']
+  - step_id: "clean input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Packages']/../..//input
+    text: "{package_name}"
+  - step_id: "select package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{package_name}')]
+  - step_id: "open select profiles drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Profiles']/../..//*[@class='v-filterselect-button']
+  - step_id: "select profiles"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{profile_name}']
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Save']
+  - step_id: "wait for the entity to be edit successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+check_upgrade_package_for_entity:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click edit Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Upgrade Package ']
+  - step_id: "clean upgrade package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Select Upgrade Package:']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input upgrade package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Select Upgrade Package:']/../..//input
+    text: "{upgrade_package_name}"
+  - step_id: "select upgrade package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{upgrade_package_name}')]
+
+upgrage_package_for_entity:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click edit Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Upgrade Package ']
+  - step_id: "clean upgrade package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Select Upgrade Package:']/../..//input
+    text: "\ue008\ue011\ue017"
+  - step_id: "input upgrade package"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Select Upgrade Package:']/../..//input
+    text: "{upgrade_package_name}"
+  - step_id: "select upgrade package"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[contains(text(), '{upgrade_package_name}')]
+  - step_id: "open select profiles drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-role-gridLayout']//*[text()='Select Package Profile:']/../..//*[@class='v-filterselect-button']
+  - step_id: "select profiles"
+    command: click_element
+    element: xpath=//*[@class='popupContent']//*[text()='{profile_name}']
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the upgrade package successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+delete_package_for_entity:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click delete Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Delete Package Profile']
+  - step_id: "click ok button"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='OK']
+  - step_id: "wait for the window to invisible"
+    command: wait_for_element_invisible
+    element: xpath=//*[@class='v-window-contents']//*[text()='OK']
+    timeout: 10
+
+delete_package_for_entity_click_x:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click delete Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Delete Package Profile']
+  - step_id: "click x button"
+    command: click_element
+    element: xpath=//*[@class='v-window-closebox']
+
+delete_package_for_entity_click_cancel:
+  - step_id: "select a package"
+    command: click_element
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "open package menu"
+    command: context_click
+    element: xpath=//*[@class='v-tabsheet-tabsheetpanel']//*[text()='{test_version}']
+  - step_id: "click delete Packages Profile"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Delete Package Profile']
+  - step_id: "click cancel button"
+    command: click_element
+    element: xpath=//*[@class='v-window-contents']//*[text()='Cancel']
+
+get_device_package_details:
+  - step_id: "get alert action detail"
+    command: get_text
+    elements: xpath=//*[@class='v-grid-tablewrapper']//td[text()='{package_name}']/../td
+    store_key: "{device_package_detail_key}"
+
+select_root_entity :
+  - step_id: "click root entity"
+    command: click_element
+    element: xpath=//*[@class='v-treegrid-cell v-treegrid-cell-focused']
+
+add_organization :
+  - step_id: "right click entity"
+    command: context_click
+    element: xpath=//*[@class='v-treegrid-cell v-treegrid-cell-focused']
+  - step_id: "click add entity"
+    command: click_element
+    element: xpath=//*[text()='Add Entity']
+  - step_id: "open entity type drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Entity']/../..//*[@class='v-filterselect-button']
+  - step_id: "select entity type"
+    command: click_element
+    element: xpath=//*[text()='{entity_type}']
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Name']/../..//input
+    text: "{entity_name}"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Description']/../..//input
+    text: "{entity_description}"
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+add_organization_cancel :
+  - step_id: "right click entity"
+    command: context_click
+    element: xpath=//*[@class='v-treegrid-cell v-treegrid-cell-focused']
+  - step_id: "click add entity"
+    command: click_element
+    element: xpath=//*[text()='Add Entity']
+  - step_id: "open entity type drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Entity']/../..//*[@class='v-filterselect-button']
+  - step_id: "select entity type"
+    command: click_element
+    element: xpath=//*[text()='{entity_type}']
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Name']/../..//input
+    text: "{entity_name}"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Description']/../..//input
+    text: "{entity_description}"
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Cancel']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+add_merchant :
+  - step_id: "right click entity"
+    command: context_click
+    element: xpath=//*[@class='v-treegrid-cell v-treegrid-cell-focused']
+  - step_id: "click add entity"
+    command: click_element
+    element: xpath=//*[text()='Add Entity']
+  - step_id: "open entity type drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Entity']/../..//*[@class='v-filterselect-button']
+  - step_id: "select entity type"
+    command: click_element
+    element: xpath=//*[text()='{entity_type}']
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Name']/../..//input
+    text: "{entity_name}"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Description']/../..//input
+    text: "{entity_description}"
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10
+
+add_region :
+  - step_id: "right click entity"
+    command: context_click
+    element: xpath=//*[@class='v-treegrid-cell v-treegrid-cell-focused']
+  - step_id: "click add entity"
+    command: click_element
+    element: xpath=//*[text()='Add Entity']
+  - step_id: "open entity type drop-down menu"
+    command: click_element
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Entity']/../..//*[@class='v-filterselect-button']
+  - step_id: "select entity type"
+    command: click_element
+    element: xpath=//*[text()='{entity_type}']
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Name']/../..//input
+    text: "{entity_name}"
+  - step_id: "input entity name"
+    command: input_text
+    element: xpath=//*[@class='v-slot v-slot-heartbeat-verticalLayout']//*[text()='Description']/../..//input
+    text: "{entity_description}"
+  - step_id: "click save button"
+    command: click_element
+    element: xpath=//*[@class='v-button-caption' and text()='Save']
+  - step_id: "wait for the entity to be added successfully"
+    command: wait_for_element_invisible
+    element: css_selector=.v-window-wrap
+    timeout: 10

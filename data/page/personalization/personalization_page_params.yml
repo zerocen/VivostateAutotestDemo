@@ -1,0 +1,17 @@
+create_organization:
+  data:
+    - ["ORGANIZATION", "AutoTestOrganization", "A organization description"]
+  ids:
+    - "Valid data"
+
+delete_organization:
+  data:
+    - "AutoTestOrganization"
+  ids:
+    - "Valid data"
+
+edit_organization:
+  data:
+    - ["AutoTestOrganization", "NewAutoTestOrganization", "New organization description"]
+  ids:
+    - "Valid data"

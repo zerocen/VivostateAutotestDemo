@@ -1,0 +1,12 @@
+app_url: "https://tstvivostate.itscocloud.com"
+proxy: ""
+driver_config:
+  browser: "Chrome"
+  using_headless: false
+  default_implicit_waiting_time: 10
+  debugger:
+    using_debugger: false
+    debugger_address: 127.0.0.1:5000
+account:
+  username: "autotest"
+  password: ""
