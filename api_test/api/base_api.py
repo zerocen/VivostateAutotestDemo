@@ -12,8 +12,8 @@ class BaseApi:
         }
         self.session = requests.Session()
 
-    def send_request(self, *args, **kwargs):
-        logger.debug(f"Send HTTP Request: {args}, {kwargs}")
-        response = self.session.request(*args, **kwargs)
+    def send_request(self, method: str, url: str, **kwargs):
+        logger.debug(f"Send HTTP Request: {method.upper()} {url}, {kwargs}")
+        response = self.session.request(method, url, **kwargs)
         logger.debug(f"Received HTTP Response: {response.text}")
         return response
