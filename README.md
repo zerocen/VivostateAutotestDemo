@@ -24,11 +24,11 @@ A automation testing framework demo.
     - *page*: Web page object encapsulation code
     - *test_case*: Test case code
 
-- **data**
+- **data**: Data files (YAML)
     - *api*: API test case data
     - *page* Web test case data and keyword-driven data
 
-- **utils**: Utility classes like configuration loader, yaml files loader and logger. 
+- **utils**: Utility classes like configuration loader, yaml files loader and logger.
 
 - **config.yml**: Framework configuration file.
 
